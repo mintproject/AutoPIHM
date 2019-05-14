@@ -1,0 +1,92 @@
+---
+title: "Automamtic PIHM/PIHMgisR modeling"
+author: Lele Shu
+date: '`r format(Sys.time(), "%d %B, %Y")`'
+output:
+  pdf_document: default
+  html_notebook: default
+---
+# Abstract
+This study is to propose a automatic hydrologic calibration and modeling system and demonstate the application in watersheds in Africa and US.
+
+# Overview
+
+**PIHM** The Penn State Integrated Hydrologic Model (PIHM) is a multiprocess, multi-scale hydrologic model where the major hydrological processes are fully coupled using the semi-discrete Finite Volume Method.
+
+**PIHMGIS** The model itself is "tightly-coupled" with PIHMgis, an open-source Geographical Information System designed for PIHM. The PIHMgis provides the access to the digital data sets (terrain, forcing and parameters) and tools necessary to drive the model, as well as a collection of GIS-based pre- and post-processing tools.
+
+Collectively the system is referred to as the **Penn State Integrated Hydrologic Modeling System (PIHMS)**. 
+
+The PIHM is an open source software, freely available for download at [PIHM website](www.pihm.psu.edu) or [Github Page](https://github.com/shulele/PIHM++) along with installation and user guides.
+
+## Why PIHM?
+It is our intention to begin a debate on the role of *Community Models* in the hydrologic sciences. Our research is a response to recent trends in US funding for *Observatory Science* that have emerged at NSF over the last few years, namely, the NSF-funded **CUAHSI** program (Consortium of Universities for Advanicing Hydrologic Sciences).
+
+PIHM represents our strategy for the synthesis of *multi-state*, *multiscale* distributed hydrologic models using the integral representation of the underlying physical process equations and state variables. 
+
+Our interest is in devising a concise representation of watershed and/or river basin hydrodynamics, which allows interactions among major physical processes operating simultaneously, but with the flexibility to add or eliminate states/processes/constitutive relations depending on the objective of the numerical experiment or purpose of the scientific or operational application.
+
+To satisfy the objectives, the PIHM
+
+- is distributed hydrologic model, based on the semi-discrete **Finite Volume Method (FVM)** in which domain discretization is an unstructured triangular irregular network (e.g. Delaunay triangles) generated with constraints (geometric, and parametric). A local prismatic control volume is formed by vertical projection of the Delauney triangles forming each layer of the model. Given a set of constraints (e.g. river network support, watershed boundary, altitude zones, ecological regions, hydraulic properties, climate zones, etc), an “optimal” mesh is generated. River volume elements are also prismatic, with trapezoidal or rectangular cross-section, and are generated along or cross edges of Delauney triangles. The local control volume contains all equations to be solved and is referred to as the model kernel. 
+- is physically-based model, in which all equations used is descibing the physics of the hydrological processes which control the catchment. The physical model is ablr to predict the water in ungage water system, to estimate the sediment, pullutants and vegetation etc, such that it is practical to be coupled with biochemistry, geomorphology, limnology and other water-related research. 
+The global ODE system is assembled by combining all local ODE systems throughout the domain and then solved by a state-of-the-art parallel ODE solver known as CVODE developed at the Lawrence Livermore National Laboratory.
+- is fully-couple hydrologic model, where the state and flux variables in the hydrologic system are solved within same time step and conserve the mass. The fluxes are infiltration, overland flow, groundwater recharge, lateral groundwater flow, exchange of river and soil/groundwater and river discharge.
+- is adaptable temporal and spatial resolution. The spatial resolution of model varies from meters to kilometers based requirement of modeling and computing resources. Internal time step of iteration step are adjustable; it is able to export the status of catchment in less  1 sencond to days. Also the time interval for exporting results is configured flexiblly. The flexible spatial and temporal resolution is rather valueable for community model coupling.
+- is open source model, anyone can access the source code, use and submit their improvement.
+- is long-term yield and single-event flood model.
+
+An important partnership and motivation for this work was the Project Leaders participation in two community-science research activites over the last few years: The University of Arizona-led Science and Technology Center (SAHRA: Sustainability of Water Resources in Semi- Arid Regions), and the Chesapeake Community Modeling Project (CCMP). Each of these research programs has been essential to supporting the concept of **Community Models** for environmental prediction and helping to make it happen.
+
+
+# Methods
+
+## Steps of PIHM modeling
+
+## Essential Terrestrial Variables?
+
+- Atmospheric forcing (precipitation, snow cover, wind, relative humidity, temperature, net radiation, albedo, photosynthestic atmospheric radiation, leaf area index)
+- Digital elevation model (DEM)
+- River/stream discharge
+- Soil (class, hydrologic properties)
+- Groundwater (levels, extent, hydro-geologic properties)
+- Lake/Reservoir (levels, extent)
+- Land cover and land use (biomass, human infrastructure, demography, ecosystem disturbance)
+- Water use
+Most data reside on federal servers ....many petabytes
+
+## A-Priori Data Sources
+
+|Feature/Time-Series | Property | Source|
+|:------------:|:------------------------:|:------------------:|
+|Soil| Porosity; Sand, Silt, Clay Fractions; Bulk Density | CONUS, SSURGO and STATSGO|
+|Geology| Bed Rock Depth; Horizontal and Vertical Hydraulic Conductivity | http://www.dcnr.state.pa.us/topogeo/, http://www.lias.psu.edu/emsl/guides/X.html|
+|Land Cover|LAI |[UMC](http://glcf.umiacs.umd.edu/data/landcover/data.shtml), [LDASmapveg](http://ldas.gsfc.nasa.gov/LDAS8th/MAPPED.VEG/LDASmapveg.shtml); |
+|Land Cover|Manning’s Roughness; | Hernandez et. al., 2000 |
+|River| Manning’s Roughness;| Dingman (2002) |
+|River| Coefficient of Discharge | ModHms Manual (Panday and Huyakorn, 2004) |
+|River| Shape and Dimensions; | Derived from regression using depth, width and discharge data from [USGS data](http://nwis.waterdata.usgs.gov/usa/nwis/measurements)|
+|River| Topology: Nodes, Neighboring Elements; | Derived using PIHMgis (Bhatt et. al., 2008)|
+|Forcing| Prec, Temp. RH, Wind, Rad. | National Land Data Assimilation System : NLDAS-2|
+|Topography| DEM |http://seamless.usgs.gov/ |
+|Streamflow| | http://nwis.waterdata.usgs.gov/nwis/sw |
+|Groundwater| | http://nwis.waterdata.usgs.gov/nwis/gw |
+
+
+## Workflow of PIHMS
+
+1. Prepare raw Essential Terrestrial Variables (ETV)
+1. Build the PIHM modeling domain with [PIHMgis](http://www.pihm.psu.edu/pihmgis_home.html) or [PIHMgisR](https://github.com/shulele/PIHMgisR) (Recommended for PIHM++)
+1. Run PIHM on desktop or cluster.
+1. Analysis the PIHM results with [PIHMgisR](https://github.com/shulele/PIHMgisR) or your hydrologic analysis tools.
+
+![The workflow of modeling with PIHMS](./Fig/Documenting the PIHM User Workflow.png)
+
+# Applications
+
+# Conclusion
+
+# Achknowledge
+The funding source
+
+
