@@ -42,8 +42,8 @@ dev.off()
 source('Step2.1_Soil.R')
 
 # =======Land Cover=============
-source('Step2.1_Landcover.R')
+source('Step2.2_Landcover.R')
 
 # =======Forcing=============
-source('Step2.1_Forcing.R')
+source('Step2.3_Forcing.R')
 
