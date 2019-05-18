@@ -1,8 +1,19 @@
 #!/usr/bin/env Rscript
+# This file is used for pre-define the variables for the working environment.
+# Important vars:
+# 1. Path to Rawdata directory
+# 2. Path to FLDAS data directory
+# 3. Path to landuse data raster file
+# 4. Path to soil data directory
+# 5. Project name
+# 6. Years for simulation. startYear and endYear
+# 7. Output path.
+
 # Task: 
 # 1. Set the path to rawdata, output, project name
 # 2. Load libraries.
 # 3. Create the folders.
+
 args = commandArgs(trailingOnly=TRUE)
 if (length(args)==0) {
   fn.prj='project.txt'
