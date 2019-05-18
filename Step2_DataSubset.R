@@ -24,8 +24,8 @@ wbd.gcs=spTransform(wbd.buf, CRSobj = CRS('+init=EPSG:4326'))
 writeshape(wbd.gcs, file = file.path(dir.pihmgis, 'wbd_gcs'))
 
 
-stm = readOGR(fsp.stm)
-writeshape(stm, file = file.path(dir.pihmgis, 'stm'))
+stm0 = readOGR(fsp.stm)
+writeshape(stm0, file = file.path(dir.pihmgis, 'stm'))
 
 dem0=raster(file.path(dir.pihmgis, 'dem.tif'))
 
