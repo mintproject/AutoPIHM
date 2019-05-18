@@ -72,3 +72,10 @@ library(hydroGOF)
 fin <- PIHM.filein(prjname, indir = dir.pihmin)
 x=list.files(dir.pihmin, pattern = glob2rx(paste0(prjname, '.*.*')), full.names = T)
 file.remove(x)
+
+
+# Some Constant values in the working environments.
+dist.buffer = 2000 #distance to build the buffer region.
+
+ext.fldas = c(22,51.4, -11.8, 23.0) # Range of FLDAS East Africa.
+res=0.1 # 0.1 deg resolution in FLDAS
