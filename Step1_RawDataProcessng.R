@@ -14,13 +14,12 @@
 source('GetReady.R')
 # Elevation
 dem0=raster(fr.dem)
-# dem0=raster(file.path(dir.rawdata, 'Elevation/STRM90_buf.tif'))
 
 # Watershed Boundary
 wbd0 = readOGR(fsp.wbd)
 
 # Stream Network
-stm0 = readOGR(fsp.wbd)
+stm0 = readOGR(fsp.stm)
 
 # reproject the dem data from GCS to PCS
 dem1=projectRaster(from=dem0, crs=crs(wbd0))
