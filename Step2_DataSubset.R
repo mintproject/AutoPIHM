@@ -21,15 +21,18 @@ writeshape(wbd.buf, file = file.path(dir.pihmgis, 'wbd_buf'))
 wbd.gcs=spTransform(wbd.buf, CRSobj = CRS('+init=EPSG:4326'))
 writeshape(wbd.gcs, file = file.path(dir.pihmgis, 'wbd_gcs'))
 
+
+stm = readOGR(fsp.stm)
 writeshape(stm, file = file.path(dir.pihmgis, 'stm'))
-writeRaster(dem,file = file.path(dir.pihmgis, 'dem.tif'), overwrite=T)
+
+dem0=raster(file.path(dir.pihmgis, 'dem.tif'))
 
 # the stream inside of the wbd.
 tmp=over(stm0, wbd)
 stm=stm0[!is.na(tmp[,1]),]
 
 # crop the elevation data
-dem = crop(dem1, wbd.buf)
+dem = crop(dem0, wbd.buf)
 
 png.control(fn='Rawdata_Subset.png', path = dir.png, ratio=1)
 plot(dem)
@@ -38,7 +41,7 @@ plot(wbd, add=T, border=3, lwd=2)
 plot(stm, add=T, col=2, lwd=2)
 title('DEM-WBD-STM')
 dev.off()
-
+# stop()
 # =======Soil=============
 source('Step2.1_Soil.R')
 
