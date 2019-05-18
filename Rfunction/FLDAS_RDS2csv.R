@@ -1,5 +1,5 @@
 # read the RDS above, to save as .csv file.
-years=2017:2018
+
 unitConvert <- function(x){
   t0=273.15
   prcp = x[,'Rainf_f_tavg']
@@ -22,7 +22,7 @@ unitConvert <- function(x){
 
 
 fns = file.path(dir.pihmgis, paste0(prjname,'-', years, '.RDS'))
-# years = 2017
+
 cns = c('Rainf_f_tavg', 'Tair_f_tavg','Qair_f_tavg',
         'Wind_f_tavg', 'Swnet_tavg','Lwnet_tavg', 
         'Psurf_f_tavg')

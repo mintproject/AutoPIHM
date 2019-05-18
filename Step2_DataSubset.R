@@ -8,13 +8,14 @@
 # 7.
 # 8.
 # pick a subwatershed from the wbd0. Assume the 107-109 sub watersheds in data.
-id=107:109  
-wbd=wbd0[id,]
+# id=107:109  
+# wbd=wbd0[id,]
+wbd = readOGR(fsp.wbd)
 writeshape(wbd, file = file.path(dir.pihmgis, 'wbd'))
 
 wbd.dis = gUnaryUnion(wbd) # dissolve the wbd.
 #buffer of the wbd, distance=2000m
-wbd.buf = gBuffer(wbd.dis, width = 2000) 
+wbd.buf = gBuffer(wbd.dis, width = dist.buffer) 
 writeshape(wbd.buf, file = file.path(dir.pihmgis, 'wbd_buf'))
 
 wbd.gcs=spTransform(wbd.buf, CRSobj = CRS('+init=EPSG:4326'))

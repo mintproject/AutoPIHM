@@ -3,7 +3,7 @@ source('GetReady.R')
 fns=paste0("Landuse.tif")
 fns1=paste0("Landuse_PCS.tif")
 
-fsource = paste0("'", file.landuse, "'")
+fsource = paste0("'", fr.landuse, "'")
 
 cmds=paste('gdalwarp -overwrite -q -cutline',
            file.path(dir.pihmgis, 'wbd_buf.shp'), '-crop_to_cutline -of GTiff ',

@@ -1,7 +1,5 @@
 
 ext = extent(wbd.gcs)
-ext.fldas = c(22,51.4, -11.8, 23.0) # Range of FLDAS East Africa.
-res=0.1 # 0.1 deg resolution in FLDAS
 xloc=seq(ext.fldas[1], ext.fldas[2], by=res)
 yloc=seq(ext.fldas[3], ext.fldas[4], by=res)
 fx <- function(x, xx, LB=TRUE){
@@ -38,6 +36,3 @@ dev.off()
 
 source('Rfunction/FLDAS_nc2RDS.R') # read the orginal fldas data and save to .RDS file.
 source('Rfunction/FLDAS_RDS2csv.R') # read the RDS above, to save as .csv file.
-
-
-

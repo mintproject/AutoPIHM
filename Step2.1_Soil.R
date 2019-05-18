@@ -1,4 +1,4 @@
-# soil0=raster('/Volumes/WD4T/WorldMaps/Soil/ISRIC_SoilGrids/recent/BLDFIE_M_sl1_250m.tif')
+
 soil.str = c('CLYPPT_M_sl','SNDPPT_M_sl','SLTPPT_M_sl','ORCDRC_M_sl','BLDFIE_M_sl')
 tmp=expand.grid(soil.str, c(1,7) )
 fns=paste0(tmp[,1], tmp[,2], "_250m.tif")
