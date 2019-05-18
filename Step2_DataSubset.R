@@ -10,6 +10,8 @@
 # pick a subwatershed from the wbd0. Assume the 107-109 sub watersheds in data.
 # id=107:109  
 # wbd=wbd0[id,]
+rm(list=ls())
+source('GetReady.R')
 wbd = readOGR(fsp.wbd)
 writeshape(wbd, file = file.path(dir.pihmgis, 'wbd'))
 
