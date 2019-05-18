@@ -13,19 +13,19 @@
 
 source('GetReady.R')
 # Elevation
-# dem0=raster(file.path(dir.rawdata, 'Elevation/Aster_GDEM30.tif'))
+dem0=raster(fr.dem)
 # dem0=raster(file.path(dir.rawdata, 'Elevation/STRM90_buf.tif'))
 
 # Watershed Boundary
-wbd0 = readOGR(file.path(dir.rawdata, 'SimpleProcessed/WBD_Delineation.shp'))
+wbd0 = readOGR(fsp.wbd)
 
 # Stream Network
-stm0 = readOGR(file.path(dir.rawdata, 'SimpleProcessed/Stream_Delineation.shp'))
+stm0 = readOGR(fsp.wbd)
 
 # reproject the dem data from GCS to PCS
-# dem1=projectRaster(from=dem0, crs=crs(wbd0))
+dem1=projectRaster(from=dem0, crs=crs(wbd0))
 # # save the data
-# writeRaster(dem1,filename = file.path(dir.pihmgis, 'dem.tif'), overwrite=TRUE)
+writeRaster(dem1,filename = file.path(dir.pihmgis, 'dem.tif'), overwrite=TRUE)
 dem1= raster(file.path(dir.pihmgis, 'dem.tif'))
 
 png.control(fn='Rawdata_Elevation.png', path = dir.png, ratio = 1)

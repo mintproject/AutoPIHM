@@ -10,6 +10,7 @@
 rm(list=ls())
 source('GetReady.R')
 source('Rfunction/SoilGeol.R')
+source('Rfunction/fun.LAIRL.R')
 wbd=readOGR(file.path(dir.pihmgis, 'wbd.shp'))
 riv=readOGR(file.path(dir.pihmgis, 'stm.shp'))
 dem=raster(file.path(dir.pihmgis, 'dem.tif'))
@@ -53,7 +54,7 @@ ny=length(years)
 nday = 365*ny +round(ny/4)
 
 rlc = raster(file.path(dir.pihmgis, 'Landuse_nlcd.tif'))
-# alc = unique(rlc)
+alc = unique(rlc)
 
 wbbuf = rgeos::gBuffer(wbd, width = 2000)
 dem = raster::crop(dem, wbbuf)
@@ -139,6 +140,8 @@ dev.off()
 
 # model configuration, parameter
 cfg.para = pihmpara(nday = nday)
+cfg.para['INIT_MODE']=3
+
 # calibration
 cfg.calib = pihmcalib()
 
@@ -158,10 +161,11 @@ para.geol = PTF.geol(ageol)
 # 23-developed, medium           
 # 81-crop land
 # 11-water
-lr=fun.lairl(lc, years=years)
+lc=1:14
+lr=GLC.LaiRf(lc, years=years)
 png(file = file.path(pngout, 'data_lairl.png'), height=11, width=11, res=100, unit='in')
 par(mfrow=c(2,1))
-col=1:length(lc)
+col=1:length(alc)
 plot(lr$LAI, col=col, main='LAI'); legend('top', paste0(lc), col=col, lwd=1)
 plot(lr$RL, col=col, main='Roughness Length'); legend('top', paste0(lc), col=col, lwd=1)
 dev.off()
@@ -186,3 +190,4 @@ write.df(para.geol, file=fin['md.geol'])
 write.pc(cfg.para, fin['md.para'])
 write.pc(cfg.calib, fin['md.calib'])
 print(nrow(pm@mesh))
+

@@ -1,5 +1,12 @@
 # AutoPIHM
 
+# Requisite
+1. R 
+2. GDAL
+2. Several R packages. (*raster* ,*sp* ,*rgeos* ,*rgdal* ,*PIHMgisR* ,*lattice* ,*ggplot2* ,*GGally* ,*hydroTSM* ,*hydroGOF*). 
+3. PIHMgisR must be install via github. 
+
+
 # Step 1
 Load the fundamental rawdata.
 ## Task:
@@ -7,7 +14,7 @@ Load the fundamental rawdata.
 - Reproject the DEM data from Geographic Coordinate System (GCS) to Projected Coordinate System (PCS), same with Watershed Boundary(WBD)
 ## Requisite
 1. The DEM data must be merged before this step. The country-wide DEM should be merged.
-1. The watershed boundary and river network (RIV) data must be ready before this Step 1.
+1. The watershed boundary and river network (RIV) data must be ready before this Step 
 
 # Step 2
 

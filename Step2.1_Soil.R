@@ -4,7 +4,7 @@ tmp=expand.grid(soil.str, c(1,7) )
 fns=paste0(tmp[,1], tmp[,2], "_250m.tif")
 fns1=paste0(tmp[,1], tmp[,2], "_250m_PCS.tif")
 
-d0 = '/Volumes/WD4T/WorldMaps/Soil/ISRIC_SoilGrids/recent/'
+d0 = dir.soil
 d1 = file.path(dir.pihmgis, 'soil')
 dir.create(d1, showWarnings = F, recursive = T)
 cmds=paste('gdalwarp -overwrite -q -cutline',

@@ -1,12 +1,9 @@
 source('GetReady.R')
-# landcover = raster(file.path(dir.rawdata, 'Landuse/USGS_LCI/LCType.tif'))
+
 fns=paste0("Landuse.tif")
 fns1=paste0("Landuse_PCS.tif")
 
-fsource = paste0("'", file.path(dir.rawdata, 'Landuse/USGS_LCI/LCType.tif'), "'")
-
-# d0 = '/Volumes/WD4T/WorldMaps/Soil/ISRIC_SoilGrids/recent/'
-# d1 = file.path(dir.pihmgis, 'Landuse')
+fsource = paste0("'", file.landuse, "'")
 
 cmds=paste('gdalwarp -overwrite -q -cutline',
            file.path(dir.pihmgis, 'wbd_buf.shp'), '-crop_to_cutline -of GTiff ',
