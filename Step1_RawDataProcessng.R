@@ -18,7 +18,7 @@ dem0=raster(fr.dem)
 # Watershed Boundary
 wbd0 = readOGR(fsp.wbd)
 wbd.buf = gBuffer(wbd0, width = dist.buffer)
-wbd.gcs=spTransform(wbd.buf, CRSobj = CRS('+init=EPSG:4326'))
+wbd.gcs=spTransform(wbd.buf, CRSobj = crs.gcs )
 # Stream Network
 stm0 = readOGR(fsp.stm)
 

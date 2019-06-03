@@ -20,7 +20,7 @@ wbd.dis = gUnaryUnion(wbd) # dissolve the wbd.
 wbd.buf = gBuffer(wbd.dis, width = dist.buffer) 
 writeshape(wbd.buf, file = file.path(dir.pihmgis, 'wbd_buf'))
 
-wbd.gcs=spTransform(wbd.buf, CRSobj = CRS('+init=EPSG:4326'))
+wbd.gcs=spTransform(wbd.buf, CRSobj = crs.gcs)
 writeshape(wbd.gcs, file = file.path(dir.pihmgis, 'wbd_gcs'))
 
 

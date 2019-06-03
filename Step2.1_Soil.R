@@ -11,7 +11,7 @@ cmds=paste('gdalwarp -overwrite -q -cutline',
            file.path(dir.pihmgis, 'wbd_buf.shp'), '-crop_to_cutline -of GTiff ',
            file.path(d0, fns), file.path(d1, fns) )
 cmds1=paste('gdalwarp -overwrite -dstnodata -9 -q',
-            '-t_srs', paste0("'EPSG:4326'"),
+            '-t_srs', paste0("'epsg:4326'"),
             '-t_srs', paste0("'", crs(wbd), "'"),
             file.path(d1, fns), file.path(d1, fns1) )
 cmds

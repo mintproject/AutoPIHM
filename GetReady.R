@@ -30,7 +30,6 @@ if(file.exists(fn.prj)){
   stop('File missing: ', fn.prj)
 }
 
-
 dir.rawdata=cdir['dir.rawdata']
 dir.soil = cdir['dir.soil']
 dir.fldas = cdir['dir.fldas']
@@ -67,9 +66,10 @@ library(hydroTSM)
 library(hydroGOF)
 
 
+crs.gcs = sp::CRS('+init=epsg:4326')
 fin <- PIHM.filein(prjname, indir = dir.pihmin)
-x=list.files(dir.pihmin, pattern = glob2rx(paste0(prjname, '.*.*')), full.names = T)
-file.remove(x)
+tmp=list.files(dir.pihmin, pattern = glob2rx(paste0(prjname, '.*.*')), full.names = T)
+file.remove(tmp)
 
 
 # Some Constant values in the working environments.
