@@ -72,5 +72,7 @@ vtab = t(matrix(c(1,0.00000,100.00000,30.00000,0.13500,    0.00000,0.10000,0.600
 14,0.00100,200.00000,97.19872,0.24650,    0.10000,0.02000,0.05000,0.90000,0.5 
 ), nrow=length(cn)))
 colnames(vtab)=cn
+vtab[, 'ROUGH']=(vtab[, 'ROUGH']/10+0.08)/86400
 write.table(vtab, file.path(dir.pihmgis,'LanduseTable.csv'), quote=F, 
           col.names = T, row.names = F)
+
