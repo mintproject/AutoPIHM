@@ -14,6 +14,10 @@
 # 2. Load libraries.
 # 3. Create the folders.
 
+# Current PIHMgisR requires different version of RTriangle package. you must install that via github:
+# install.packages("devtools")
+devtools::install_github("shulele/RTriangle", subdir="pkg")
+
 args = commandArgs(trailingOnly=TRUE)
 if (length(args)==0) {
   fn.prj='project.txt'
@@ -67,9 +71,6 @@ library(hydroGOF)
 
 
 crs.gcs = sp::CRS('+init=epsg:4326')
-fin <- PIHM.filein(prjname, indir = dir.pihmin)
-tmp=list.files(dir.pihmin, pattern = glob2rx(paste0(prjname, '.*.*')), full.names = T)
-file.remove(tmp)
 
 
 # Some Constant values in the working environments.
