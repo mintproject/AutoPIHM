@@ -7,15 +7,16 @@
 # 6.
 # 7.
 # 8.
+source('GetReady.R')
 PIHM(prjname = prjname, inpath = dir.pihmin, outpath = dir.pihmout)
 
 cfg.para = readpara()
 vns= c("eleysurf","eleyunsat","eleygw",
        "elevprcp","elevetp", 
        "elevinfil","elevrech",
-       "elevet0", "elevet1", "elevet2", 
+       "elevetic", "elevettr", "elevetev",'elevetp', 
        "rivqdown","rivqsub", "rivqsurf","rivystage")
 
-xl=BasicPlot(imap = T)
+xl=BasicPlot(varname = vns, imap = T)
 
 wb=wb.all(xl=xl, apply.weekly)
