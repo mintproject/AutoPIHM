@@ -1,10 +1,10 @@
 # Task:
-# 1.
-# 2.
-# 3.
-# 4.
-# 5.
-# 6.
+# 1. Configure the model, number of elements, etc.
+# 2. Load the input watershed boundary(WBD) and river shapefiles (RIV).
+# 3. Simplify the WBD and RIV.
+# 4. Extract the value of soil, geology, and land use.
+# 5. Build the input files for PIHM.
+# 6. Export the figures of the model input.
 # 7.
 # 8.
 rm(list=ls())

@@ -1,10 +1,10 @@
 # Task:
-# 1.
-# 2.
-# 3.
-# 4.
-# 5.
-# 6.
+# 1. Configure the Model input/output path and project names.
+# 2. The values of your interest.
+# 3. Load the time-series (TS) data 
+# 4. Do the TS-plot
+# 5. 2D spatial plot.
+# 6. Water balance calculation.
 # 7.
 # 8.
 source('GetReady.R')
