@@ -9,3 +9,4 @@
 "dir.rawdata" "/Volumes/WD4T/Box Sync/South_Sudan/RawData"
 "dir.soil" "/Volumes/WD4T/WorldMaps/Soil/ISRIC_SoilGrids/recent/"
 "dir.fldas" "/Volumes/WD4T/GESDISC_data/data/FLDAS/FLDAS_NOAH01_A_EA_D.001"
+"NumCells" "1000"
