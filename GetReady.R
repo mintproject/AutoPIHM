@@ -43,7 +43,10 @@ fsp.stm = cdir['fsp.stm']
 
 fr.dem=cdir['fr.dem']
 fr.landuse = cdir['fr.landuse']
-
+NumCells = as.numeric(cdir['NumCell'])
+if(is.null(NumCells) | is.na(NumCells)){
+  NumCells = 1000;
+}
 # years=2017:2018
 dir.png =file.path(dir.out, 'Image')
 dir.pihmgis = file.path(dir.out, 'PIHMgis' )

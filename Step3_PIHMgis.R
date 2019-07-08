@@ -44,7 +44,7 @@ dir.create(pngout, showWarnings = F, recursive = T)
 dir.create(gisout, showWarnings = F, recursive = T)
 
 AA1=gArea(wbd)
-a.max = AA1/1000;
+a.max = AA1/NumCells;
 q.min = 33;
 tol.riv = sqrt(a.max)/2
 tol.wb = sqrt(a.max)/2
@@ -90,8 +90,8 @@ tri = m.DomainDecomposition(wb=wb.simp,q=q.min, a=a.max)
 pm=pihmMesh(tri,dem=dem, AqDepth = AqDepth)
 spm = sp.mesh2Shape(pm, crs = crs(riv))
 writeshape(spm, crs(wbd), file=file.path(gisout, 'domain'))
-plot_sp(spm, 'Zmax')
-plot(riv.simp, add=T, col=2, lwd=2)
+#plot_sp(spm, 'Zmax')
+#plot(riv.simp, add=T, col=2, lwd=2)
 png.control(fn=paste0('PIHMgis','_domain.png'), path = file.path(dir.png), ratio=1)
 plot_sp(spm, 'Zmax')
 plot(riv.simp, add=T, col=2, lwd=2)
@@ -106,6 +106,7 @@ writeforc(forc.fns, path='forcing', file=fin['md.forc'])
 
 # generate PIHM .riv
 pr=pihmRiver(riv.simp, dem)
+pr@rivertype[, 'Width']= c(40, 60)* log(AA1)
 # Correct river slope to avoid negative slope
 # pr = correctRiverSlope(pr)
 
@@ -141,7 +142,7 @@ dev.off()
 # model configuration, parameter
 cfg.para = pihmpara(nday = nday)
 cfg.para['INIT_MODE']=3
-
+cfg.para['MAX_SOLVER_STEP'] =2
 # calibration
 cfg.calib = pihmcalib()
 
@@ -166,8 +167,8 @@ lr=GLC.LaiRf(lc, years=years)
 png(file = file.path(pngout, 'data_lairl.png'), height=11, width=11, res=100, unit='in')
 par(mfrow=c(2,1))
 col=1:length(alc)
-plot(lr$LAI, col=col, main='LAI'); legend('top', paste0(lc), col=col, lwd=1)
-plot(lr$RL, col=col, main='Roughness Length'); legend('top', paste0(lc), col=col, lwd=1)
+#plot(lr$LAI, col=col, main='LAI'); legend('top', paste0(lc), col=col, lwd=1)
+#plot(lr$RL, col=col, main='Roughness Length'); legend('top', paste0(lc), col=col, lwd=1)
 dev.off()
 write.tsd(lr$LAI, file = fin['md.lai'])
 write.tsd(lr$RL, file = fin['md.rl'])
