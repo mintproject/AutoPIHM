@@ -14,10 +14,6 @@
 # 2. Load libraries.
 # 3. Create the folders.
 
-# Current PIHMgisR requires different version of RTriangle package. you must install that via github:
-# install.packages("devtools")
-devtools::install_github("shulele/RTriangle", subdir="pkg")
-
 args = commandArgs(trailingOnly=TRUE)
 if (length(args)==0) {
   fn.prj='project.txt'
