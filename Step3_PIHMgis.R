@@ -51,7 +51,7 @@ tol.wb = sqrt(a.max)/2
 tol.len = sqrt(a.max)/2
 AqDepth = 10
 ny=length(years)
-nday = 365*ny +round(ny/4)
+nday = 365*ny + round(ny/4)
 
 rlc = raster(file.path(dir.pihmgis, 'Landuse_nlcd.tif'))
 alc = unique(rlc)
@@ -106,7 +106,7 @@ writeforc(forc.fns, path='forcing', file=fin['md.forc'])
 
 # generate PIHM .riv
 pr=pihmRiver(riv.simp, dem)
-pr@rivertype[, 'Width']= c(40, 60)* log(AA1)
+pr@rivertype[, 'Width']= seq(40, 60, length.out = nrow(pr@rivertype))* log(AA1)
 # Correct river slope to avoid negative slope
 # pr = correctRiverSlope(pr)
 
