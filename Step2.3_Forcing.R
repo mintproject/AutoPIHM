@@ -34,5 +34,10 @@ plot(wbd.gcs, add=T, border=4, lwd=2)
 title('FLDAS')
 dev.off()
 
-source('Rfunction/FLDAS_nc2RDS.R') # read the orginal fldas data and save to .RDS file.
-source('Rfunction/FLDAS_RDS2csv.R') # read the RDS above, to save as .csv file.
+if (res == 0.1) {
+  source('Rfunction/FLDAS_nc2RDS.R') # read the orginal fldas data and save to .RDS file.
+  source('Rfunction/FLDAS_RDS2csv.R') # read the RDS above, to save as .csv file.
+} else {
+  source('Rfunction/GLDAS_nc2RDS.R') # read the orginal fldas data and save to .RDS file.
+  source('Rfunction/GLDAS_RDS2csv.R') # read the RDS above, to save as .csv file.
+}
